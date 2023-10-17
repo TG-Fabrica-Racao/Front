@@ -1,0 +1,80 @@
+<div class="container">
+    <p-toast></p-toast>
+    <div class="title"> Criar Ração</div>
+
+    <form [formGroup]="formGroup">
+        <div class="line">
+            <div class="item">
+                <label htmlFor="nome">Nome</label>
+                <input id="nome" type="text" formControlName="nome" placeholder="Digite o nome da ração"
+                    [ngClass]="{'invalid-field': formGroup.controls['nome'].invalid && formGroup.controls['nome'].touched}">
+                <div *ngIf="formGroup.controls['nome'].invalid && formGroup.controls['nome'].touched" class="validation-message">
+                    É necessário preencher o nome.
+                </div>
+            </div>
+            
+            <div class="item">
+                <label htmlFor="id_categoria">Categoria</label>
+                <select name="id_categoria" id="id_categoria" formControlName="id_categoria"
+                    [ngClass]="{'invalid-field': formGroup.controls['id_categoria'].invalid && formGroup.controls['id_categoria'].touched}">
+                    <option value="" disabled selected>Selecione uma catgoria</option>
+                    <option [value]="item.id" *ngFor="let item of categorias">
+                        {{ item.id }} - {{ item.nome }}
+                    </option>
+                </select>
+                <div *ngIf="formGroup.controls['id_categoria'].invalid && formGroup.controls['id_categoria'].touched"
+                    class="validation-message">
+                    É necessário preencher uma categoria.
+                </div>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="item">
+                <label htmlFor="tipo_racao">Tipo da ração</label>
+                <select name="tipo_racao" id="tipo_racao" formControlName="tipo_racao"
+                    [ngClass]="{'invalid-field': formGroup.controls['tipo_racao'].invalid && formGroup.controls['tipo_racao'].touched}">
+                    <option value="" disabled selected>Selecione um tipo</option>
+                    <option [value]="item.nome" *ngFor="let item of tipos">
+                        {{ item.nome }}
+                    </option>
+                </select>
+                <div *ngIf="formGroup.controls['tipo_racao'].invalid && formGroup.controls['tipo_racao'].touched"
+                    class="validation-message">
+                    É necessário informar o tipo da ração.
+                </div>
+            </div>
+            
+            <div class="item">
+                <label htmlFor="fase_utilizada">Fase Utilizada</label>
+                <select name="fase_utilizada" id="fase_utilizada" formControlName="fase_utilizada"
+                    [ngClass]="{'invalid-field': formGroup.controls['fase_utilizada'].invalid && formGroup.controls['fase_utilizada'].touched}">
+                    <option value="" disabled selected>Selecione uma fase</option>
+                    <option [value]="item.id" *ngFor="let item of fases">
+                        {{ item.nome }}
+                    </option>
+                </select>
+                <div *ngIf="formGroup.controls['fase_utilizada'].invalid && formGroup.controls['fase_utilizada'].touched"
+                    class="validation-message">
+                    É necessário informar a fase utilizada.
+                </div>
+            </div>
+        </div>
+        
+        <div class="line">
+            <div class="item">
+                <label htmlFor="estoque_minimo">Estoque Mínimo</label>
+                <input id="estoque_minimo" type="text" formControlName="estoque_minimo" placeholder="Digite o estoque mínimo"
+                    [ngClass]="{'invalid-field': formGroup.controls['estoque_minimo'].invalid && formGroup.controls['estoque_minimo'].touched}">
+                <div *ngIf="formGroup.controls['estoque_minimo'].invalid && formGroup.controls['estoque_minimo'].touched"
+                    class="validation-message">
+                    É necessário informar o estoque mínimo..
+                </div>
+            </div>
+        </div>
+        
+        <button class="submit" type="submit" (click)="createRacao()">Criar Ração</button>
+
+    </form>
+
+</div>

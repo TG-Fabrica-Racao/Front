@@ -1,0 +1,45 @@
+<div class="container">
+    <p-toast></p-toast>
+    <div class="title"> Criar Ingrediente</div>
+
+    <form [formGroup]="formGroup">
+        <div class="item">
+            <label htmlFor="nome">Nome</label>
+            <input id="nome" type="text" formControlName="nome" placeholder="Digite o nome do Ingrediente"
+                [ngClass]="{'invalid-field': formGroup.controls['nome'].invalid && formGroup.controls['nome'].touched}">
+            <div *ngIf="formGroup.controls['nome'].invalid && formGroup.controls['nome'].touched" class="validation-message">
+                É necessário preencher o nome corretamente.
+            </div>
+        </div>
+
+        <div class="item">
+            <label htmlFor="id_grupo">Grupo</label>
+            <select name="id_grupo" id="id_grupo" formControlName="id_grupo"
+                [ngClass]="{'invalid-field': formGroup.controls['id_grupo'].invalid && formGroup.controls['id_grupo'].touched}">
+                <option value="" disabled selected>Selecione um grupo</option>
+                <!-- <option disabled>Selecione um grupo</option> -->
+                <option [value]="item.id" *ngFor="let item of grupos">
+                    {{ item.id }} - {{ item.nome }}
+                </option>
+            </select>
+            <div *ngIf="formGroup.controls['id_grupo'].invalid && formGroup.controls['id_grupo'].touched"
+                class="validation-message">
+                É necessário preencher o grupo corretamente.
+            </div>
+        </div>
+
+        <div class="item">
+            <label htmlFor="estoque">Estoque Mínimo</label>
+            <input id="estoque" type="text" formControlName="estoque_minimo" placeholder="Digite o estoque mínimo"
+                [ngClass]="{'invalid-field': formGroup.controls['estoque_minimo'].invalid && formGroup.controls['estoque_minimo'].touched}">
+            <div *ngIf="formGroup.controls['estoque_minimo'].invalid && formGroup.controls['estoque_minimo'].touched"
+                class="validation-message">
+                É necessário preencher o estoque corretamente.
+            </div>
+        </div>
+
+        <button class="submit" type="submit" (click)="createIngrediente()">Criar Ingrediente</button>
+        
+    </form>
+
+</div>

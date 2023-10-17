@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="box-image">
+        <div class="img-login"></div>
+    </div>
+
+    <div class="box-content">
+        <p-toast></p-toast>
+        <div class="img-logo"></div>
+        <h1>Login</h1>
+        <form class="form" [formGroup]="formGroup">
+            <div class="item">
+                <label htlFor="email">E-mail</label>
+                <div class="field">
+                    <button [ngClass]="{'invalid-field-button': formGroup.controls['email'].invalid && formGroup.controls['email'].touched}"><i class='bx bx-envelope'></i></button>
+                    <input type="email" formControlName="email" placeholder="Digite seu e-mail"
+                        [ngClass]="{'invalid-field-input': formGroup.controls['email'].invalid && formGroup.controls['email'].touched}">
+                </div>
+                <small *ngIf="formGroup.controls['email'].hasError('required') && formGroup.controls['email'].touched"
+                    class="validation-message">
+                    É necessário preencher o e-mail.
+                </small>
+                <small *ngIf="formGroup.controls['email'].hasError('email') && !formGroup.controls['email'].hasError('required') && formGroup.controls['email'].touched"
+                    class="validation-message">
+                    E-mail inválido. Por favor, insira um e-mail válido.
+                </small>
+            </div>
+            <div class="item">
+                <label htlFor="senha">Senha</label>
+                <div class="field">
+                    <button [ngClass]="{'invalid-field-button': formGroup.controls['senha'].invalid && formGroup.controls['senha'].touched}"><i class='bx bx-lock-alt'></i></button>
+                    <input type="password" formControlName="senha" placeholder="Digite sua senha"
+                        [ngClass]="{'invalid-field-input': formGroup.controls['senha'].invalid && formGroup.controls['senha'].touched}">
+                </div>
+                <small *ngIf="formGroup.controls['senha'].invalid && formGroup.controls['senha'].touched" class="validation-message">
+                    É necessário preencher a senha.
+                </small>
+            </div>
+            <div class="login">
+                <button class="btn-login" (click)="submitLogin()">
+                    Entrar
+                </button>
+            </div>
+        </form>
+        <div class="questions">
+            <h5>Dúvidas? Entre em contato</h5>
+            <p>nutrimax@suporte.com.br &nbsp;&nbsp; (14) 3491-8000 </p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div class="container">
+    <div class="box-logo">
+        <div class="img-logo"></div>
+    </div>
+    <div class="box-login">
+        <h1>Login</h1>
+        <form class="form-box" [formGroup]="formGroup">
+            <label>E-mail</label>
+            <div class="input-box">
+                <div class="input-wrapper">
+                    <span class="icon"><i class='bx bx-envelope'></i></span>
+                    <input type="email" formControlName="email" placeholder="Digite seu e-mail" [ngClass]="{'invalid-field': formGroup.controls['email'].invalid && formGroup.controls['email'].touched}">
+                </div>
+            </div>
+            <small *ngIf="formGroup.controls['email'].hasError('required') && formGroup.controls['email'].touched" class="validation-message">
+                É necessário preencher o e-mail.
+              </small>
+            <small *ngIf="formGroup.controls['email'].hasError('email') && !formGroup.controls['email'].hasError('required') && formGroup.controls['email'].touched" class="validation-message">
+                E-mail inválido. Por favor, insira um e-mail válido.
+            </small>
+            <label>Senha</label>
+            <div class="input-box">
+                <div class="input-wrapper">
+                    <span class="icon"><i class='bx bx-lock-alt' ></i></span>
+                    <input type="password" formControlName="senha" placeholder="Digite sua senha" [ngClass]="{'invalid-field': formGroup.controls['senha'].invalid && formGroup.controls['senha'].touched}">
+                </div>
+            </div>
+            <small *ngIf="formGroup.controls['senha'].invalid && formGroup.controls['senha'].touched" class="validation-message" >
+                É necessário preencher a senha.
+            </small>
+            <button class="btn-login" (click)="submitLogin()">
+                Entrar
+            </button>
+        </form>
+    </div>
+</div> -->
+

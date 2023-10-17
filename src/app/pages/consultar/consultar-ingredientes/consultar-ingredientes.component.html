@@ -1,0 +1,54 @@
+<div class="search-bar">
+    <div class="dropdown">
+        <button (click)="toggleDropdown()">{{ selectedFilter | titlecase }} <i
+                [ngClass]="isDropdownOpen  ? 'bx bx-chevron-down' : 'bx bx-chevron-up'" class=""></i></button>
+        <ul *ngIf="isDropdownOpen">
+            <li (click)="selectFilter('nome')" [ngClass]="selectedFilter == 'nome' ? 'selectedFilter' : ''">Nome</li>
+            <li (click)="selectFilter('id')" [ngClass]="selectedFilter == 'id' ? 'selectedFilter' : ''">ID</li>
+            <li (click)="selectFilter('grupo')" [ngClass]="selectedFilter == 'grupo' ? 'selectedFilter' : ''">Grupo</li>
+        </ul>
+    </div>
+
+    <div class="input-wrapper">
+        <input class="input-search" type="search" placeholder="Pesquisar" [formControl]="searchTerm">
+        <div class="search-icon"><i class='bx bx-search'></i></div>
+    </div>
+
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Grupo</th>
+                <th>Estoque Mínimo</th>
+                <th>Estoque Atual</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of displayItems" class="table-row">
+                <td [attr.data_title]="item.id ? 'ID' : null">{{ item.id }}</td>
+                <td [attr.data_title]="item.nome ? 'Nome' : null">{{ item.nome }}</td>
+                <td [attr.data_title]="item.grupo ? 'Grupo' : null">{{ item.grupo }}</td>
+                <td [attr.data_title]="item.estoque_minimo ? 'Estoque Mínimo' : null">{{ item.estoque_minimo }}</td>
+                <td [attr.data_title]="item.estoque_atual || item.estoque_atual === 0 ? 'Estoque Atual' : null">{{
+                    item.estoque_atual }}</td>
+                <td [attr.data_title]="item.nome != ''  ? 'Editar' : null">
+                    <button (click)="editIngrediente(+item.id)"><i [ngClass]="item.nome != ''  ? 'bx bx-dots-vertical-rounded' : ''"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container-paginator">
+    <button class="icon" [disabled]="currentPage === 1" [style.color]="currentPage == 1 ? '#006494' : ''"><i
+            class='bx bx-chevrons-left' (click)="prevPage()"></i></button>
+    <span>Página {{ currentPage }} de {{ totalPages }}</span>
+    <button class="icon" [disabled]="currentPage === totalPages"
+        [style.color]="currentPage == totalPages ? '#006494' : ''"><i class='bx bx-chevrons-right'
+            (click)="nextPage()"></i></button>
+</div>

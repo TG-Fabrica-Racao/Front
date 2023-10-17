@@ -1,0 +1,81 @@
+<div class="search-bar">
+    <button class="btn" (click)="sendToBack()">
+        Voltar
+        <i class='bx bx-left-arrow-alt'></i>
+    </button>
+
+</div>
+
+<div class="container">
+    <p-toast></p-toast>
+    <div class="title"> Comprar Ingrediente: {{ ingrediente?.nome }}</div>
+
+    <form [formGroup]="formGroup">
+        <div class="line">
+            <div class="item">
+                <label htmlFor="data_compra">Data</label>
+                <input id="data_compra" type="date" formControlName="data_compra"
+                    [ngClass]="{'invalid-field': formGroup.controls['data_compra'].invalid && formGroup.controls['data_compra'].touched}">
+                <small *ngIf="formGroup.controls['data_compra'].invalid && formGroup.controls['data_compra'].touched"
+                    class="validation-message">
+                    É necessário informar a data.
+                </small>
+            </div>
+
+            <div class="item">
+                <label htmlFor="quantidade_bruta">Quantidade Bruta</label>
+                <input id="quantidade_bruta" type="number" formControlName="quantidade_bruta" placeholder="Digite a quantidade"
+                    [ngClass]="{'invalid-field': formGroup.controls['quantidade_bruta'].invalid && formGroup.controls['quantidade_bruta'].touched}">
+                <small *ngIf="formGroup.controls['quantidade_bruta'].invalid && formGroup.controls['quantidade_bruta'].touched" class="validation-message">
+                    É necessário preencher a quantidade bruta.
+                </small>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="item">
+                <label htmlFor="pre_limpeza">Pré-limpeza</label>
+                <input id="pre_limpeza" type="number" formControlName="pre_limpeza" placeholder="Digite a pré-limpeza"
+                    [ngClass]="{'invalid-field': formGroup.controls['pre_limpeza'].invalid && formGroup.controls['pre_limpeza'].touched}">
+                <small *ngIf="formGroup.controls['pre_limpeza'].invalid && formGroup.controls['pre_limpeza'].touched"
+                    class="validation-message">
+                    É necessário informar a pré-limpeza.
+                </small>
+            </div>
+
+            <div class="item">
+                <label htmlFor="valor_unitario">Valor Unitário</label>
+                <input id="valor_unitario" type="number" formControlName="valor_unitario" placeholder="Digite ao valor"
+                    [ngClass]="{'invalid-field': formGroup.controls['valor_unitario'].invalid && formGroup.controls['valor_unitario'].touched}">
+                <small *ngIf="formGroup.controls['valor_unitario'].invalid && formGroup.controls['valor_unitario'].touched"
+                    class="validation-message">
+                    É necessário informar o valor unitário.
+                </small>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="item">
+                <label htmlFor="numero_nota">N° nota</label>
+                <input id="numero_nota" type="text" formControlName="numero_nota" placeholder="Digite o número da nota"
+                    [ngClass]="{'invalid-field': formGroup.controls['numero_nota'].invalid && formGroup.controls['numero_nota'].touched}">
+                <small *ngIf="formGroup.controls['numero_nota'].invalid && formGroup.controls['numero_nota'].touched"
+                    class="validation-message">
+                    É necessário informar o número da nota.
+                </small>
+            </div>
+
+            <div class="item">
+                <label htmlFor="fornecedor">Fornecedor</label>
+                <input id="fornecedor" type="text" formControlName="fornecedor" placeholder="Digite o fornecedor"
+                    [ngClass]="{'invalid-field': formGroup.controls['fornecedor'].invalid && formGroup.controls['fornecedor'].touched}">
+                <small *ngIf="formGroup.controls['fornecedor'].invalid && formGroup.controls['fornecedor'].touched"
+                    class="validation-message">
+                    É necessário informar o fornecedor.
+                </small>
+            </div>
+        </div>
+        
+        <div class="submit-box"><button class="submit" type="submit" (click)="comprarIngrediente()">Comprar</button></div>
+    </form>
+</div>
