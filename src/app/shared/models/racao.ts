@@ -30,3 +30,12 @@ export interface ProduzirRacao {
     id_racao: number;
     quantidade: number;
 }
+
+export interface BuyRacao {
+    data_compra: string;
+    id_racao: number;
+    quantidade: number;
+    valor_unitario: number;
+    numero_nota: string;
+    fornecedor: string;
+}
