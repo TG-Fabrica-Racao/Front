@@ -49,15 +49,6 @@
                 <td [attr.data_title]="item.nome != ''  ? 'Editar' : null">
                     <button (click)="buyRacao(+item.id)"><i
                             [ngClass]="item.nome != ''  ? 'bx bx-dots-vertical-rounded' : ''"></i></button>
-                    <!-- <p-overlayPanel #op>
-                        <ng-template pTemplate="content">
-                            <div class="items">
-                                <i class="pi pi-eye" style="font-size: 1rem">Editar</i>
-                                <i class="pi pi-pencil" style="font-size: 1rem" (click)="editRacao(+item.id)">Editar
-                                    Ingredientes</i>
-                            </div>
-                        </ng-template>
-                    </p-overlayPanel> -->
                 </td>
             </tr>
         </tbody>
