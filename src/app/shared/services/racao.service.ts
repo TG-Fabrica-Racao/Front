@@ -52,4 +52,10 @@ export class RacaoService {
   buyRacao(values: BuyRacao): Observable<BuyRacao> {
     return this.http.post<BuyRacao>(`${this.API}/racoes/comprar`, values);
   }
+
+  acertarEstoqueRacao(values: {id_racao: number, quantidade: number}): Observable<{id_racao: number, quantidade: number}> {
+    return this.http.post<{id_racao: number, quantidade: number}>(`${this.API}/racoes/acertar-estoque`, values);
+  }
+
+
 }
