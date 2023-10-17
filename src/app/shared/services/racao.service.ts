@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { CreateRacao, ProduzirRacao, Racao } from '../models/racao';
+import { BuyRacao, CreateRacao, ProduzirRacao, Racao } from '../models/racao';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +47,9 @@ export class RacaoService {
     }
     console.info('Values =>', values)
     return this.http.post<ProduzirRacao>(`${this.API}/racoes/produzir`, values);
+  }
+
+  buyRacao(values: BuyRacao): Observable<BuyRacao> {
+    return this.http.post<BuyRacao>(`${this.API}/racoes/comprar`, values);
   }
 }
