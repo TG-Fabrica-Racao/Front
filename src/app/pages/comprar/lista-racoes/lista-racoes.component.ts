@@ -108,6 +108,5 @@ export class ListaRacoesComponent implements OnInit {
 
   buyRacao(id: number) {
     return this.router.navigate(['../racao', id], { relativeTo: this.route });
-
   }
 }
