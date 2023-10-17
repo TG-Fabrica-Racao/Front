@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { Ingrediente } from 'src/app/shared/models/ingrediente';
 import { IngredienteService } from 'src/app/shared/services/ingrediente.service';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { Racao } from 'src/app/shared/models/racao';
@@ -25,7 +24,6 @@ export class ListaRacoesComponent implements OnInit {
   isDropdownOpen: boolean = false;
 
   constructor(
-    private ingredienteService: IngredienteService,
     private racaoService: RacaoService,
     private filterService: FilterService,
     private router: Router,
