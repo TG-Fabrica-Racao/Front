@@ -1,1 +1,75 @@
-<p>lista-racoes works!</p>
+<div class="search-bar">
+    <div class="dropdown">
+        <button (click)="toggleDropdown()">{{ selectedFilter | titlecase }} <i
+                [ngClass]="isDropdownOpen  ? 'bx bx-chevron-down' : 'bx bx-chevron-up'" class=""></i></button>
+        <ul *ngIf="isDropdownOpen">
+            <li (click)="selectFilter('nome')" [ngClass]="selectedFilter == 'nome' ? 'selectedFilter' : ''">Nome</li>
+            <li (click)="selectFilter('id')" [ngClass]="selectedFilter == 'id' ? 'selectedFilter' : ''">ID</li>
+            <!-- <li (click)="selectFilter('tipo_racao')" [ngClass]="selectedFilter == 'tipo_racao' ? 'selectedFilter' : ''">Tipo</li>
+            <li (click)="selectFilter('fase_utilizada')" [ngClass]="selectedFilter == 'fase_utilizada' ? 'selectedFilter' : ''">Fase Utilizada</li> -->
+            <li (click)="selectFilter('categoria')" [ngClass]="selectedFilter == 'categoria' ? 'selectedFilter' : ''">
+                Categoria</li>
+        </ul>
+    </div>
+
+    <div class="input-wrapper">
+        <input class="input-search" type="search" placeholder="Pesquisar" [formControl]="searchTerm">
+        <div class="search-icon"><i class='bx bx-search'></i></div>
+    </div>
+
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Fase Utilizada</th>
+                <th>Batida</th>
+                <th>Estoque Mínimo</th>
+                <th>Estoque Atual</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of displayItems" class="table-row">
+                <td [attr.data_title]="item.id ? 'ID' : null">{{ item.id }}</td>
+                <td [attr.data_title]="item.nome ? 'Nome' : null">{{ item.nome }}</td>
+                <td [attr.data_title]="item.categoria ? 'Categoria' : null">{{ item.categoria }}</td>
+                <td [attr.data_title]="item.tipo_racao ? 'Tipo' : null">{{ item.tipo_racao }}</td>
+                <td [attr.data_title]="item.fase_utilizada ? 'Fase Utilizada' : null">{{ item.fase_utilizada }}</td>
+                <td [attr.data_title]="item.batida ? 'Fase Batida' : null">{{ item.batida }}</td>
+                <td [attr.data_title]="item.estoque_minimo ? 'Estoque Mínimo' : null">{{ item.estoque_minimo }}</td>
+                <td [attr.data_title]="item.estoque_atual || item.estoque_atual === 0 ? 'Estoque Atual' : null">{{
+                    item.estoque_atual }}</td>
+                <td [attr.data_title]="item.nome != ''  ? 'Editar' : null">
+                    <button (click)="buyRacao(+item.id)"><i
+                            [ngClass]="item.nome != ''  ? 'bx bx-dots-vertical-rounded' : ''"></i></button>
+                    <!-- <p-overlayPanel #op>
+                        <ng-template pTemplate="content">
+                            <div class="items">
+                                <i class="pi pi-eye" style="font-size: 1rem">Editar</i>
+                                <i class="pi pi-pencil" style="font-size: 1rem" (click)="editRacao(+item.id)">Editar
+                                    Ingredientes</i>
+                            </div>
+                        </ng-template>
+                    </p-overlayPanel> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="container-paginator">
+    <button class="icon" [disabled]="currentPage === 1" [style.color]="currentPage == 1 ? '#006494' : ''"><i
+            class='bx bx-chevrons-left' (click)="prevPage()"></i></button>
+    <span>Página {{ currentPage }} de {{ totalPages }}</span>
+    <button class="icon" [disabled]="currentPage === totalPages"
+        [style.color]="currentPage == totalPages ? '#006494' : ''"><i class='bx bx-chevrons-right'
+            (click)="nextPage()"></i></button>
+</div>
+
