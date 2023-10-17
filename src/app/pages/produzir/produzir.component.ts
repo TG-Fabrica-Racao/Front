@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { IngredienteService } from 'src/app/shared/services/ingrediente.service';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { Racao } from 'src/app/shared/models/racao';
 import { RacaoService } from 'src/app/shared/services/racao.service';
@@ -30,11 +28,8 @@ export class ProduzirComponent implements OnInit{
   formGroup: FormGroup;
 
   constructor(
-    private ingredienteService: IngredienteService,
     private racaoService: RacaoService,
     private filterService: FilterService,
-    private router: Router,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private messageService: MessageService
   ) { 
@@ -143,7 +138,7 @@ export class ProduzirComponent implements OnInit{
           }, 2000)
         },
         error: (err) => {
-          this.messageService.add({ severity: 'error', summary: 'Erro', detail: err.error.message || `Ocorreu um erro ao criar o Ingrediente.` });
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: err.error.message || `Ocorreu um erro ao realizar a produção` });
           console.error('Erro => ', err)
         }
       })
