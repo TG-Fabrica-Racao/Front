@@ -79,7 +79,7 @@ export class CompraIngredienteComponent implements OnInit {
         },
         error: (erro) => {
           console.error('Erro => ', erro);
-          this.messageService.add({ severity: 'error', summary: 'Erro', detail: erro.error.message || `Ocorreu um erro ao criar o Ingrediente.` });
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: erro.error.message || `Ocorreu um erro ao comprar o Ingrediente.` });
         },
         complete: () => this.saved = true
       })
