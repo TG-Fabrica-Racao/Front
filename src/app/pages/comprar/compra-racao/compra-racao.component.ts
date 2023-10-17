@@ -62,7 +62,7 @@ export class CompraRacaoComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'Ração Comprada', detail: 'Ração comprada com sucesso!' });
           this.formGroup.reset()
           setTimeout(() => {
-            this.router.navigate(['../../ingredientes'], { relativeTo: this.route });
+            this.router.navigate(['../../racoes'], { relativeTo: this.route });
           }, 2000)
         },
         error: (erro) => {

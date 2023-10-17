@@ -1,0 +1,184 @@
+.search-bar {
+    width: 100%;
+    height: 10%;
+    background-color: var(--ColorFive);
+    box-shadow: 0 4px 8px rgba(34, 34, 34, 0.2);
+    border-bottom: 1px solid var(--ColorThree);
+    display: flex;
+    padding-left: 1rem;
+    align-items: center;
+    gap: 1rem;
+
+    .btn {
+        background-color: var(--ColorFour);
+        width: 120px;
+        height: 38px;
+        color: #333;
+        font-weight: 500;
+        border-radius: 4px;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        padding: 0 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: 0.5s all ease;
+
+        &:hover {
+            background-color: var(--ColorThree);
+        }
+    }
+}
+
+.container {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center;
+    position: relative;
+
+    .title {
+        width: 95%;
+        height: 10%;
+        background-color: var(--ColorOne);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
+        color: var(--ColorFive);
+        font-size: 1.3rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    form {
+        width: 95%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 2rem;
+        border: 1px solid #eee;
+        position: relative;
+
+        .line {
+            width: 80%;
+            display: flex;
+            justify-content: center !important;
+            gap: 1rem;
+
+            .item {
+                width: 40%;
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                label {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: #333;
+                    text-wrap: nowrap;
+                }
+
+                input,
+                select {
+                    border: none;
+                    outline: none;
+                    height: 38px;
+                    border-radius: 4px;
+                    background-color: var(--ColorFour);
+                    padding: 0 8px;
+                }
+            }
+
+            .item-1 {
+                width: calc(80% + 16px);
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                label {
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: #333;
+                    text-wrap: nowrap;
+                }
+
+                input,
+                select {
+                    border: none;
+                    outline: none;
+                    height: 38px;
+                    border-radius: 4px;
+                    background-color: var(--ColorFour);
+                    padding: 0 8px;
+                }
+            }
+        }
+
+        .submit {
+            height: 38px;
+            border-radius: 4px;
+            outline: none;
+            border: none;
+            padding: 8px;
+            background-color: var(--Green);
+            color: var(--ColorFive);
+            font-weight: 500;
+            transition: 0.5s all ease-in-out;
+
+            &:hover {
+                background-color: var(--GreenHover);
+            }
+        }
+    }
+}
+
+@media all and (max-width: 800px) {
+
+    .title {
+        font-size: 1rem !important;
+    }
+
+    form {
+        display: block !important;
+        overflow: auto !important;
+        padding: 1rem;
+
+        .line {
+            width: 100% !important;
+            flex-direction: column;
+            justify-content: center !important;
+            align-items: center;
+            margin-bottom: 12px;
+
+        }
+
+        .item,
+        .item-1,
+        .submit {
+            width: 60% !important;
+
+            input,
+            label {
+                display: block;
+            }
+        }
+
+        .submit-box {
+            width: 100% !important;
+            display: flex;
+            justify-content: center;
+
+            .submit {
+                margin-top: 16px;
+            }
+        }
+
+    }
+}
