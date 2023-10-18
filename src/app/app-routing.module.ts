@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'consultar', loadChildren: () => import('./pages/consultar/consultar.module').then(m => m.ConsultarModule) },
   { path: 'produzir', loadChildren: () => import('./pages/produzir/produzir.module').then(m => m.ProduzirModule) },
   { path: 'comprar', loadChildren: () => import('./pages/comprar/comprar.module').then(m => m.ComprarModule) },
-  { path: 'acertar-estoque', loadChildren: () => import('./pages/acertar-estoque/acertar-estoque.module').then(m => m.AcertarEstoqueModule) }
+  { path: 'acertar-estoque', loadChildren: () => import('./pages/acertar-estoque/acertar-estoque.module').then(m => m.AcertarEstoqueModule) },
+  { path: 'sistema', loadChildren: () => import('./pages/sistema/sistema.module').then(m => m.SistemaModule) }
 ];
 
 @NgModule({
