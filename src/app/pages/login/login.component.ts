@@ -29,7 +29,7 @@ export class LoginComponent {
   submitLogin() {
     if (this.formGroup.valid) {
       const formValues = this.formGroup.value;
-      this.authService.Login(formValues).subscribe({
+      this.authService.login(formValues).subscribe({
         next: (res) => {
           console.log(res);
           this.messageService.add({ severity: 'success', summary: 'Login Efetuado', detail: 'Login Efetuado com sucesso!' });
