@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Login, LoginResponse } from '../models/login';
+import { ChangePassword, Login, LoginResponse } from '../models/login';
 
 const KEY = 'token';
 const API = environment.API;
@@ -44,7 +44,13 @@ export class AuthService {
     return hasToken;
   }
 
-  Login(login: Login): Observable<LoginResponse> {
+  login(login: Login): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${API}/users/login`, login);
   }
+
+  changePassword(values: ChangePassword): Observable<ChangePassword> {
+    return this.http.patch<ChangePassword>(`${API}/users/update-password`, values);
+  }
+
+  
 }
