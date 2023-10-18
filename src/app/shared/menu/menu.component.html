@@ -1,6 +1,6 @@
 <header [ngClass]="menuToggle  ? 'active' : ''">
     <!-- <a class="logo">NutriMAX</a> -->
-
+    <p-toast></p-toast>
     <div class="menuToggle" (click)="onMenuToggle()"></div>
     <nav>
         <ul>
@@ -45,79 +45,82 @@
             </li>
         </ul>
     </nav>
-    <a class="user-profile">{{ this.userInfo?.nome }} <i class='bx bx-user'></i></a>
+    <a class="user-profile" (click)="openModal()">{{ this.userInfo?.nome }} <i class='bx bx-user'></i></a>
 </header>
 
-<!-- <header [ngClass]="menuToggle  ? 'active' : ''">
-    <a class="logo">NutriMAX</a>
-    <div class="menuToggle" (click)="onMenuToggle()"></div>
-    <nav>
-        <ul>
-            <li><a>Cadastrar</a></li>
-            <li><a>Consultar</a></li>
-            <li><a>Dropdown <i class='bx bx-chevron-down'></i></a>
-                <ul>
-                    <li><a>Product 01</a></li>
-                    <li><a>Product 02</a></li>
-                    <li><a>Product 03<i class='bx bx-plus'></i></a>
-                        <ul>
-                            <li><a>Submenu 01</a></li>
-                            <li><a>Submenu 02</a></li>
-                            <li><a>Submenu 03</a></li>
-                            <li><a>Submenu 04</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a>Portfolio</a></li>
-            <li><a>Blog <i class='bx bx-chevron-down'></i></a>
-                <ul>
-                    <li><a>Post Link 01</a></li>
-                    <li><a>Post Link 02</a></li>
-                    <li><a>Post Link 03</a></li>
-                </ul>
-            </li>
-            <li><a>Contact</a></li>
-        </ul>
-    </nav>
-</header> -->
+<p-dialog header="Olá, {{ this.userInfo?.nome }}" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }" [modal]="true"
+    [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <div class="modal">
+        <div class="content">
+            <div class="data">
+                <h5>Meus Dados</h5>
+                <i class='bx bx-pencil' (click)="onEditable()"></i>
+            </div>
 
+            <div class="user-data">
+                <div class="item-data">
+                    <div class="item-title">
+                        <i class='bx bx-user'></i>
+                        <label>Nome</label>
+                    </div>
+                    <div class="item-info">
+                        {{ this.userInfo?.nome }}
+                    </div>
+                </div>
 
-
-
-
-
-
-
-
-<!-- <header class="box-header">
-    <button class="menu-button" (click)="toggleMenu()">
-        <i class="bx bx-menu"></i>
-    </button>
-    <ul class="nav-links" #navLinks [ngClass]="{ 'show-menu': isMenuOpen }">
-        <li class="nav-item"><a routerLink="/cadastrar" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: false}">Cadastrar</a></li>
-        <li class="nav-item"><a routerLink="/consultar" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: false}">Consultar</a></li>
-        <li class="nav-item"><a routerLink="/produzir" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: false}">Produzir</a></li>
-        <li class="nav-item"><a routerLink="/comprar" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: false}">Comprar</a></li>
-        <li class="nav-item"><a routerLink="/acertar-estoque" routerLinkActive="active-link"
-                [routerLinkActiveOptions]="{exact: false}">Acertar Estoque</a></li>
-        <li class="nav-item" *ngIf="this.userInfo?.cargo === 'Administrador'" [ngClass]="{ 'dropdown-open': isSistemaOpen }" (click)="toggleSistemaDropdown()">
-            <a class="system">Sistema</a>
-            <ul class="subcategorias" *ngIf="isSistemaOpen">
-                <li *ngFor="let subcategoria of sistemaSubcategorias">
-                    <a [routerLink]="['/sistema', subcategoria.route]" routerLinkActive="active-link">{{
-                        subcategoria.display }}</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-
-    <div class="user-profile">
-        <span class="icon"><i class='bx bx-user'></i></span>
-        <p class="user-name">{{ this.userInfo?.nome }}</p>
+                <div class="item-data">
+                    <div class="item-title">
+                        <i class='bx bx-envelope'></i>
+                        <label>E-mail</label>
+                    </div>
+                    <div class="item-info">
+                        {{ this.userInfo?.email }}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <ng-template #form [ngIf]="isEditable" [ngIfThen]="form">
+                <form class="form" [formGroup]="formGroup">
+                    <div class="item">
+                        <label htmlFor="senha_atual">Senha Atual</label>
+                        <div class="card flex justify-content-center">
+                            <p-password formControlName="senha_atual" [feedback]="false" [toggleMask]="true"></p-password>
+                            <small *ngIf="formGroup.controls['senha_atual'].invalid && formGroup.controls['senha_atual'].touched"
+                                class="validation-message">
+                                É necessário preencher a senha atual.
+                            </small>
+                        </div>
+                    </div>
+                
+                    <div class="item">
+                        <label htmlFor="senha_nova">Senha Nova</label>
+                        <div class="card flex justify-content-center">
+                            <p-password formControlName="senha_nova" [feedback]="true" [toggleMask]="true"></p-password>
+                            <small *ngIf="formGroup.controls['senha_nova'].invalid && formGroup.controls['senha_nova'].touched"
+                                class="validation-message">
+                                É necessário informar a nova senha.
+                            </small>
+                            <small *ngIf="formGroup.controls['senha_nova'].hasError('minlength')" class="validation-message">
+                                A nova senha deve ter ao menos 3 caracteres.
+                            </small>
+                        </div>
+                    </div>
+                
+                    <div class="submit">
+                        <button class="btn-submit" [disabled]="formGroup.invalid" (click)="changePassword()">
+                           Editar
+                        </button>
+                    </div>
+                </form>
+                <hr>
+            </ng-template>
+            
+            <div class="submit">
+                <button class="btn" (click)="logout()">
+                    Sair
+                </button>
+            </div>
+        </div>
     </div>
-</header> -->
+
+</p-dialog>

@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MenuService } from './menu.service';
 import { User } from '../models/user';
+import { MessageService } from 'primeng/api';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
+  providers: [MessageService]
 })
 export class MenuComponent implements OnInit{
 
@@ -13,13 +19,22 @@ export class MenuComponent implements OnInit{
   isSistemaOpen: boolean = false;
   userInfo: User | null = null;
   menuToggle: boolean = false;
-  sistemaSubcategorias: { display: string, route: string }[] = [
-    { display: 'Histórico', route: 'historico' },
-    { display: 'Gerenciar Usuários', route: 'gerenciar-usuarios' }
-  ];
+  visible: boolean = false;
+  formGroup: FormGroup;
+  isEditable: boolean = false;
 
-  constructor(private menuService: MenuService) {
 
+  constructor(
+    private menuService: MenuService,
+    private messageService: MessageService,
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.formGroup = this.formBuilder.group({
+      senha_atual: ['', Validators.required],
+      senha_nova: ['', [Validators.required, Validators.minLength(3)]],
+    });
   }
 
   onMenuToggle() {
@@ -29,14 +44,6 @@ export class MenuComponent implements OnInit{
   ngOnInit(): void {
       this.getUserInfo();
   }
-  toggleSistemaDropdown() {
-    this.isSistemaOpen = !this.isSistemaOpen;
-  }
-  toggleMenu() {
-    setTimeout(() => {
-      this.isMenuOpen = !this.isMenuOpen;
-    }, 10);
-  }
 
   getUserInfo() {
     this.menuService.userIdentify().subscribe({
@@ -45,6 +52,45 @@ export class MenuComponent implements OnInit{
       },
       error: (erro) => console.error('Erro => ', erro)
     })
+  }
+
+  openModal() {
+    this.visible = true;
+  }
+
+  onEditable() {
+    this.isEditable = !this.isEditable;
+  }
+
+  changePassword() {
+    if (this.formGroup.valid && this.formGroup.value) {
+      const values = {
+        ...this.formGroup.value,
+        email: this.userInfo!.email
+      }
+
+      this.authService.changePassword(values).subscribe({
+        next: (changePassword) => {
+          console.log('Senha Alterada => ', changePassword);
+          this.messageService.add({ severity: 'success', summary: 'Senha atualizada', detail: 'A senha foi atualizada com sucesso.' });
+          this.formGroup.reset();
+          setTimeout(() => {
+            this.visible = false;
+          }, 2000)
+        },
+        error: (erro) => {
+          console.error('Erro => ', erro);
+          this.messageService.add({ severity: 'error', summary: 'Erro', detail: erro.error.message || `Ocorreu um erro ao alterar a senha.` });
+        }
+      })
+    }
+  }
+
+  logout() {
+    this.visible = false;
+    localStorage.clear();
+    this.authService.setIsAuthenticated(false);
+    this.router.navigateByUrl('/login');
   }
   
 }
