@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { User } from '../models/user';
+import { CreateUser, UpdateUser, User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +35,14 @@ export class UsuarioService {
   getUsuarioById(id: string): Observable<User> {
     return this.http.get<User>(`${this.API}/users/?id=${id}`);
   }
+
+  createUsuario(values: CreateUser): Observable<CreateUser> {
+    return this.http.post<CreateUser>(`${this.API}/users/create`, values);
+  }
+
+  updateUsuario(values: UpdateUser, id: number): Observable<UpdateUser> {
+    console.log('Values => ', values)
+    return this.http.patch<UpdateUser>(`${this.API}/users/update/${id}`, values);
+  }
+  
 }
