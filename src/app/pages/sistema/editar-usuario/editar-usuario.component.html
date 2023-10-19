@@ -1,1 +1,80 @@
-<p>editar-usuario works!</p>
+<div class="search-bar">
+    <button class="btn" (click)="sendToBack()">
+        Voltar
+        <i class='bx bx-left-arrow-alt'></i>
+    </button>
+
+</div>
+
+<div class="container">
+    <p-toast></p-toast>
+    <div class="title">Atualizar Usuário: {{ usuario?.nome }}</div>
+
+    <form [formGroup]="formGroup">
+        <div class="line">
+            <div class="item-1">
+                <label htmlFor="email">E-mail</label>
+                <input id="email" type="email" formControlName="email" placeholder="Digite o email do usuário"
+                    [ngClass]="{'invalid-field': formGroup.controls['email'].invalid && formGroup.controls['email'].touched}">
+                <div *ngIf="formGroup.controls['email'].invalid && formGroup.controls['email'].touched" class="validation-message">
+                    É necessário preencher o e-mail corretamente.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="line">
+            <div class="item">
+                <label htmlFor="nome">Nome</label>
+                <input id="nome" type="text" formControlName="nome" placeholder="Digite o nome do Ingrediente"
+                    [ngClass]="{'invalid-field': formGroup.controls['nome'].invalid && formGroup.controls['nome'].touched}">
+                <div *ngIf="formGroup.controls['nome'].invalid && formGroup.controls['nome'].touched" class="validation-message">
+                    É necessário preencher o nome corretamente.
+                </div>
+            </div>
+
+            <div class="item">
+                <label htmlFor="telefone">Telefone</label>
+                <input id="telefone" type="tel" formControlName="telefone" placeholder="Digite o estoque mínimo"
+                    [ngClass]="{'invalid-field': formGroup.controls['telefone'].invalid && formGroup.controls['telefone'].touched}">
+                <div *ngIf="formGroup.controls['telefone'].invalid && formGroup.controls['telefone'].touched"
+                    class="validation-message">
+                    É necessário preencher o telefone.
+                </div>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="item">
+                <label htmlFor="cargo">Cargo</label>
+                <select name="cargo" id="cargo" formControlName="cargo"
+                    [ngClass]="{'invalid-field': formGroup.controls['cargo'].invalid && formGroup.controls['cargo'].touched}">
+                    <option value="" disabled selected>Selecione um cargo</option>
+                    <option [value]="item.nome" *ngFor="let item of cargos">
+                        {{ item.nome }}
+                    </option>
+                </select>
+                <div *ngIf="formGroup.controls['cargo'].invalid && formGroup.controls['cargo'].touched" class="validation-message">
+                    É necessário preencher o cargo.
+                </div>
+            </div>
+
+            <div class="item">
+                <label htmlFor="status_usuario">Status</label>
+                <select name="status_usuario" id="status_usuario" formControlName="status_usuario"
+                    [ngClass]="{'invalid-field': formGroup.controls['status_usuario'].invalid && formGroup.controls['status_usuario'].touched}">
+                    <option value="" disabled selected>Selecione um status</option>
+                    <option [value]="item.status" *ngFor="let item of status">
+                        {{ item.status }}
+                    </option>
+                </select>
+                <div *ngIf="formGroup.controls['status_usuario'].invalid && formGroup.controls['status_usuario'].touched" class="validation-message">
+                    É necessário informar o status.
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-box"><button class="submit" type="submit" (click)="updateUsuario()">Atualizar</button>
+        </div>
+    </form>
+</div>
