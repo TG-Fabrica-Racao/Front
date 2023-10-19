@@ -1,1 +1,65 @@
-<p>usuarios works!</p>
+<div class="search-bar">
+    <div class="dropdown">
+        <button (click)="toggleDropdown()">{{ selectedFilter | titlecase }} <i
+                [ngClass]="isDropdownOpen  ? 'bx bx-chevron-down' : 'bx bx-chevron-up'" class=""></i></button>
+        <ul *ngIf="isDropdownOpen">
+            <li (click)="selectFilter('nome')" [ngClass]="selectedFilter == 'nome' ? 'selectedFilter' : ''">Nome</li>
+            <li (click)="selectFilter('id')" [ngClass]="selectedFilter == 'id' ? 'selectedFilter' : ''">ID</li>
+            <li (click)="selectFilter('email')" [ngClass]="selectedFilter == 'email' ? 'selectedFilter' : ''">E-mail</li>
+            <li (click)="selectFilter('cargo')" [ngClass]="selectedFilter == 'cargo' ? 'selectedFilter' : ''">Cargo</li>
+            <li (click)="selectFilter('telefone')" [ngClass]="selectedFilter == 'telefone' ? 'selectedFilter' : ''">Telefone</li>
+        </ul>
+    </div>
+
+    <div class="input-wrapper">
+        <input class="input-search" type="search" placeholder="Pesquisar" [formControl]="searchTerm">
+        <button><i class='bx bx-search'></i></button>
+    </div>
+
+    <div class="add-user">
+        <button (click)="createUser()">
+            <span>Novo</span>
+            <i class="bx bx-plus-circle"></i>
+        </button>
+    </div>
+
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Status</th>
+                <th>Cargo</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of displayItems" class="table-row">
+                <td [attr.data_title]="item.id ? 'ID' : null">{{ item.id }}</td>
+                <td [attr.data_title]="item.nome ? 'Nome' : null">{{ item.nome }}</td>
+                <td [attr.data_title]="item.email ? 'E-mail' : null">{{ item.email }}</td>
+                <td [attr.data_title]="item.telefone ? 'Telefone' : null">{{ item.telefone }}</td>
+                <td [attr.data_title]="item.status_usuario ? 'Estoque Atual' : null">{{ item.status_usuario }}</td>
+                <td [attr.data_title]="item.cargo ? 'Cargo' : null">{{ item.cargo }}</td>
+                <td [attr.data_title]="item.nome != ''  ? 'Editar' : null">
+                    <button (click)="editUser(+item.id)"><i
+                            [ngClass]="item.nome != ''  ? 'bx bx-dots-vertical-rounded' : ''"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container-paginator">
+    <button class="icon" [disabled]="currentPage === 1" [style.color]="currentPage == 1 ? '#006494' : ''"><i
+            class='bx bx-chevrons-left' (click)="prevPage()"></i></button>
+    <span>Página {{ currentPage }} de {{ totalPages }}</span>
+    <button class="icon" [disabled]="currentPage === totalPages"
+        [style.color]="currentPage == totalPages ? '#006494' : ''"><i class='bx bx-chevrons-right'
+            (click)="nextPage()"></i></button>
+</div>
