@@ -39,3 +39,11 @@ export interface BuyRacao {
     numero_nota: string;
     fornecedor: string;
 }
+
+export interface LogProducao {
+    id: number | string;
+    racao: string;
+    data: string;
+    usuario: string;
+    quantidade: string;
+}

@@ -21,3 +21,13 @@ export interface UpdateUser {
   status_usuario: string;
   cargo: string;
 }
+
+export interface UserLogs {
+  id: number | string;
+  data_registro: string;
+  id_usuario: number;
+  usuario: string;
+  id_acao: number;
+  acao: string;
+  descricao: string;
+}
