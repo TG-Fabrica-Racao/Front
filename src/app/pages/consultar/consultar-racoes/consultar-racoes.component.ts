@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { Ingrediente } from 'src/app/shared/models/ingrediente';
 import { IngredienteService } from 'src/app/shared/services/ingrediente.service';
 import { FilterService } from 'src/app/shared/services/filter.service';
 import { Racao } from 'src/app/shared/models/racao';
