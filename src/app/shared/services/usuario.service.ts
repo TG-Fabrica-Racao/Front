@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { CreateUser, UpdateUser, User } from '../models/user';
+import { CreateUser, UpdateUser, User, UserLogs } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +44,16 @@ export class UsuarioService {
     console.log('Values => ', values)
     return this.http.patch<UpdateUser>(`${this.API}/users/update/${id}`, values);
   }
+
+  getUsuarioLogs(values?: any): Observable<UserLogs[]> {
+
+    console.log('values => ', values)
+    let params = new HttpParams();
+    for (const key in values) {
+      params = params.append(key, values[key]);
+    }
+    return this.http.get<UserLogs[]>(`${this.API}/users/logs`, { params: params });
+  }
+
   
 }
