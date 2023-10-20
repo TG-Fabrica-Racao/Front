@@ -1,1 +1,46 @@
-<p>logs works!</p>
+<div class="search-bar" [formGroup]="formGroup">
+
+    <div class="input-wrapper">
+        <input class="input-search" type="search" placeholder="Pesquisar" formControlName="nome">
+        <button><i class='bx bx-search'></i></button>
+    </div>
+
+    <input class="data" type="date" formControlName="data_inicial">
+
+    <input class="data" type="date" formControlName="data_final">
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Registro</th>
+                <th>Usuário</th>
+                <!-- <th>Ação</th> -->
+                <th></th>
+                <th>Descrição</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of displayItems" class="table-row">
+                <td [attr.data_title]="item.id ? 'ID' : null">{{ item.id }}</td>
+                <td [attr.data_title]="item.data_registro ? 'Registro' : null">{{ item.data_registro | date: 'dd/MM/yyyy' }} </td>
+                <td [attr.data_title]="item.usuario ? 'Usuário' : null">{{ item.usuario }}</td>
+                <!-- <td [attr.data_title]="item.acao ? 'Ação' : null">{{ item.acao }}</td> -->
+                <td [attr.data_title]="item.descricao ? 'Descrição' : null"></td>
+                <td style="text-align: center;"> <br> {{ item.descricao }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container-paginator">
+    <button class="icon" [disabled]="currentPage === 1" [style.color]="currentPage == 1 ? '#006494' : ''"><i
+            class='bx bx-chevrons-left' (click)="prevPage()"></i></button>
+    <span>Página {{ currentPage }} de {{ totalPages }}</span>
+    <button class="icon" [disabled]="currentPage === totalPages"
+        [style.color]="currentPage == totalPages ? '#006494' : ''"><i class='bx bx-chevrons-right'
+            (click)="nextPage()"></i></button>
+</div>
+
