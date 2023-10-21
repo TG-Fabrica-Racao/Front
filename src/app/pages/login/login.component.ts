@@ -32,13 +32,9 @@ export class LoginComponent {
       this.authService.login(formValues).subscribe({
         next: (res) => {
           console.log(res);
-          this.messageService.add({ severity: 'success', summary: 'Login Efetuado', detail: 'Login Efetuado com sucesso!' });
           this.authService.saveToken(res.token);
           this.authService.setIsAuthenticated(true);
-          setTimeout(() => {
-            this.router.navigate(['/cadastrar/cadastro-ingrediente']);
-          }, 2000)
-        
+          this.router.navigate(['/cadastrar/cadastro-ingrediente']);
         },
         error: (err) => {
           console.log(err)
