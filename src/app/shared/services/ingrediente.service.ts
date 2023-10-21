@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { BuyIngrediente, CreateIngrediente, Ingrediente, UpdateIngrediente } from '../models/ingrediente';
+import { BuyIngrediente, CreateIngrediente, HistoricoCompraIngrediente, Ingrediente, UpdateIngrediente } from '../models/ingrediente';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +47,14 @@ export class IngredienteService {
 
   buyIngrediente(values: BuyIngrediente): Observable<BuyIngrediente> {
     return this.http.post<BuyIngrediente>(`${this.API}/ingredientes/comprar`, values);
+  }
+
+  getHistoricoCompraIngredientes(values?: any): Observable<HistoricoCompraIngrediente[]> {
+    console.log('values => ', values)
+    let params = new HttpParams();
+    for (const key in values) {
+      params = params.append(key, values[key]);
+    }
+    return this.http.get<HistoricoCompraIngrediente[]>(`${this.API}/ingredientes/historico-compras`, { params: params });
   }
 }
