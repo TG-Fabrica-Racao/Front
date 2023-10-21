@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { debounceTime } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LogProducao } from 'src/app/shared/models/racao';
 import { RacaoService } from 'src/app/shared/services/racao.service';
@@ -21,8 +20,6 @@ export class ProducoesComponent implements OnInit {
 
   constructor(
     private racaoService: RacaoService,
-    private router: Router,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {  
     this.formGroup = this.formBuilder.group({
@@ -36,14 +33,12 @@ export class ProducoesComponent implements OnInit {
     this.getLogs();
     this.formGroup.valueChanges.pipe(
       debounceTime(300)
-    ).subscribe((changes) => {
-      console.log('changes => ', changes)
+    ).subscribe(() => {
       this.getLogs();
     })
   }
 
   getLogs() {
-    console.log('teste')
     this.racaoService.getProducaoLogs(this.formGroup.value).subscribe({
       next: (res) => {
         this.logs = res;
