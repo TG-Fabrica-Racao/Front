@@ -1,1 +1,56 @@
-<p>historico-ingredientes works!</p>
+<div class="search-bar" [formGroup]="formGroup">
+
+    <div class="input-wrapper">
+        <input class="input-search" type="search" placeholder="Pesquisar" formControlName="nome_ingrediente">
+        <button><i class='bx bx-search'></i></button>
+    </div>
+
+    <input class="data" type="date" formControlName="data_inicial">
+
+    <input class="data" type="date" formControlName="data_final">
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ingrediente</th>
+                <th>Data</th>
+                <th>Quantidade Bruta</th>
+                <th>Pré-limpeza</th>
+                <th>Valor Unitário</th>
+                <th>Valor Total</th>
+                <th>Nota</th>
+                <th>Fornecedor</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let item of displayItems" class="table-row">
+                <td [attr.data_title]="item.id ? 'ID' : null">{{ item.id }}</td>
+                <td [attr.data_title]="item.ingrediente ? 'Ingrediente' : null">{{ item.ingrediente }}</td>
+                <td [attr.data_title]="item.data_compra ? 'Data' : null">{{ item.data_compra | date: 'dd/MM/yyyy' }} </td>
+                <td [attr.data_title]="item.quantidade_bruta ? 'Quantidade Bruta' : null">{{ item.quantidade_bruta }}</td>
+                <td [attr.data_title]="item.pre_limpeza ? 'Pré-limpeza' : null">{{ item.pre_limpeza }}</td>
+                <td [attr.data_title]="item.valor_unitario ? 'Valor Unitário' : null">{{ item.valor_unitario }}</td>
+                <td [attr.data_title]="item.valor_total ? 'Valor Total' : null">{{ item.valor_total }}</td>
+                <td [attr.data_title]="item.numero_nota ? 'Nota' : null">{{ item.numero_nota }}</td>
+                <td [attr.data_title]="item.fornecedor ? 'Fornecedor' : null">{{ item.fornecedor }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container-paginator">
+    <button class="icon" [disabled]="currentPage === 1" [style.color]="currentPage == 1 ? '#006494' : ''"><i
+            class='bx bx-chevrons-left' (click)="prevPage()"></i></button>
+    <span>Página {{ currentPage }} de {{ totalPages }}</span>
+    <button class="icon" [disabled]="currentPage === totalPages"
+        [style.color]="currentPage == totalPages ? '#006494' : ''"><i class='bx bx-chevrons-right'
+            (click)="nextPage()"></i></button>
+</div>
+
+
+
+
+
