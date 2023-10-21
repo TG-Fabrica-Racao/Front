@@ -55,18 +55,10 @@
             </div>
             <div class="item">
                 <label htmlFor="fase_utilizada">Fase Utilizada</label>
-                <!-- <input type="text" id="fase_utilizada" formControlName="fase_utilizada"> -->
-                <!-- <select name="fase_utilizada" id="fase_utilizada" formControlName="fase_utilizada"> -->
-                    <!-- <option value="" disabled selected>Selecione uma fase</option>
-                    <option [value]="item.id" *ngFor="let item of fases">
-                        {{ item.nome }}
-                    </option> -->
-                <!-- </input> -->
-    
-                <select name="fase_utilizada" id="fase_utilizada" formControlName="fase_utilizada"
+                <select name="fase_utilizada" id="fase_utilizada" formControlName="fase_utilizada" 
                     [ngClass]="{'invalid-field': formGroup.controls['fase_utilizada'].invalid && formGroup.controls['fase_utilizada'].touched}">
                     <option value="" disabled selected>Selecione uma fase</option>
-                    <option [value]="item.id" *ngFor="let item of fases">
+                    <option [value]="item.nome" *ngFor="let item of fases">
                         {{ item.nome }}
                     </option>
                 </select>
@@ -75,21 +67,6 @@
                     É necessário informar a fase utilizada.
                 </div>
             </div>
-
-            <!-- <div class="item">
-                <label htmlFor="fase_utilizada">Fase Utilizada</label>
-                <select name="fase_utilizada" id="fase_utilizada" formControlName="fase_utilizada"
-                    [ngClass]="{'invalid-field': formGroup.controls['fase_utilizada'].invalid && formGroup.controls['fase_utilizada'].touched}">
-                    <option value="" disabled selected>Selecione uma fase</option>
-                    <option [value]="item.id" *ngFor="let item of fases">
-                        {{ item.nome }}
-                    </option>
-                </select>
-                <div *ngIf="formGroup.controls['fase_utilizada'].invalid && formGroup.controls['fase_utilizada'].touched"
-                    class="validation-message">
-                    É necessário informar a fase utilizada.
-                </div>
-            </div> -->
         </div>
 
         <div class="line">
