@@ -11,6 +11,7 @@ import { ProducoesComponent } from './producoes/producoes.component';
 import { LogsComponent } from './logs/logs.component';
 import { CanDeactivateGuard } from 'src/app/shared/guards/can-deactivate-guard.service';
 import { UsuarioResolverService } from 'src/app/shared/resolvers/usuario-resolver.service';
+import { RoleGuard } from 'src/app/shared/guards/role.guard';
 
 const routes: Routes = [
   { 
@@ -20,19 +21,22 @@ const routes: Routes = [
       {
         path: 'usuarios',
         pathMatch: 'prefix',
+        canActivate: [RoleGuard],
         component: UsuariosComponent
       },
       {
         path: 'criar-usuario',
         pathMatch: 'prefix',
+        canDeactivate: [CanDeactivateGuard],
+        canActivate: [RoleGuard],
         component: CriarUsuarioComponent,
-        canDeactivate: [CanDeactivateGuard]
       },
       {
         path: 'editar-usuario/:id',
         pathMatch: 'full',
-        component: EditarUsuarioComponent,
         canDeactivate: [CanDeactivateGuard],
+        canActivate: [RoleGuard],
+        component: EditarUsuarioComponent,
         resolve: {
           usuario: UsuarioResolverService
         }
@@ -40,26 +44,31 @@ const routes: Routes = [
       {
         path: 'historico-compra-ingredientes',
         pathMatch: 'prefix',
+        canActivate: [RoleGuard],
         component: HistoricoIngredientesComponent
       },
       {
         path: 'historico-compra-racoes',
         pathMatch: 'prefix',
+        canActivate: [RoleGuard],
         component: HistoricoRacoesComponent
       },
       {
         path: 'acertos-estoque',
         pathMatch: 'prefix',
+        canActivate: [RoleGuard],
         component: AcertosEstoqueComponent
       },
       {
         path: 'producoes',
         pathMatch: 'prefix',
+        canActivate: [RoleGuard],
         component: ProducoesComponent
       },
       {
         path: 'logs',
         pathMatch: 'prefix',
+        canActivate: [RoleGuard],
         component: LogsComponent
       },
     ]
