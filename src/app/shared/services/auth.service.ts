@@ -15,7 +15,9 @@ export class AuthService {
   private isAuthenticatedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isAuthenticated$: Observable<boolean> = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.setIsAuthenticated(!!this.returnToken());
+   }
 
   public setIsAuthenticated(value: boolean): void {
     this.isAuthenticatedSubject.next(value);
