@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { BuyRacao, CreateRacao, LogProducao, ProduzirRacao, Racao } from '../models/racao';
+import { BuyRacao, CreateRacao, HistoricoCompraRacao, LogAcertos, LogProducao, ProduzirRacao, Racao } from '../models/racao';
 
 @Injectable({
   providedIn: 'root'
@@ -65,6 +65,25 @@ export class RacaoService {
       params = params.append(key, values[key]);
     }
     return this.http.get<LogProducao[]>(`${this.API}/racoes/historico-producao`, { params: params });
+  }
+
+  getAcertosLogs(values?: any): Observable<LogAcertos[]> {
+
+    console.log('values => ', values)
+    let params = new HttpParams();
+    for (const key in values) {
+      params = params.append(key, values[key]);
+    }
+    return this.http.get<LogAcertos[]>(`${this.API}/racoes/historico-producao`, { params: params });
+  }
+
+  getHistoricoCompraRacoes(values?: any): Observable<HistoricoCompraRacao[]> {
+    console.log('values => ', values)
+    let params = new HttpParams();
+    for (const key in values) {
+      params = params.append(key, values[key]);
+    }
+    return this.http.get<HistoricoCompraRacao[]>(`${this.API}/racoes/historico-compras`, { params: params });
   }
 
 
