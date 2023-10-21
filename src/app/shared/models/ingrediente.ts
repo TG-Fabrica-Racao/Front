@@ -29,3 +29,16 @@ export interface BuyIngrediente {
     numero_nota: string;
     fornecedor: string;
 }
+
+export interface HistoricoCompraIngrediente {
+    id: number | string;
+    data_compra: string;
+    ingrediente: string;
+    quantidade_bruta: string;
+    pre_limpeza: string;
+    quantidade_liquida: string;
+    valor_unitario: string;
+    valor_total: string;
+    numero_nota: string;
+    fornecedor: string;
+}
