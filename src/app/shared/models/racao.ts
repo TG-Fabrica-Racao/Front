@@ -47,3 +47,22 @@ export interface LogProducao {
     usuario: string;
     quantidade: string;
 }
+
+export interface LogAcertos {
+    id: number | string;
+    racao: string;
+    data: string;
+    usuario: string;
+    quantidade: number | string;
+}
+
+export interface HistoricoCompraRacao {
+    id: number | string;
+    data_compra: string;
+    racao: string;
+    quantidade: number | string;
+    valor_unitario: number | string;
+    valor_total: number | string;
+    numero_nota: string;
+    fornecedor: string;
+}
