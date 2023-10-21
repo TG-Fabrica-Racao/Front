@@ -4,7 +4,6 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { Ingrediente } from 'src/app/shared/models/ingrediente';
 import { Racao } from 'src/app/shared/models/racao';
 import { RacaoService } from 'src/app/shared/services/racao.service';
 import { SupService } from 'src/app/shared/services/sup.service';
@@ -15,7 +14,7 @@ import { SupService } from 'src/app/shared/services/sup.service';
   styleUrls: ['./editar-racao.component.scss'],
   providers: [MessageService]
 })
-export class EditarRacaoComponent implements OnInit{
+export class EditarRacaoComponent implements OnInit {
   racao?: Racao;
   racaoId?: number;
   saved: boolean = false;
@@ -68,9 +67,6 @@ export class EditarRacaoComponent implements OnInit{
 
     this.getAllCategories();
     this.getAllFases();
-
-
-  
   }
 
   editRacao() {
@@ -97,9 +93,6 @@ export class EditarRacaoComponent implements OnInit{
   }
 
   patchForm() {
-    // const value = this.formGroup.get('fase_utilizada')?.value;
-    // console.log('VALUE => ', value)
-    // console.log('Patch Ração => ', this.racao);
     this.formGroup.patchValue({
       nome: this.racao?.nome,
       id_categoria: this.racao?.id_categoria,
@@ -108,9 +101,6 @@ export class EditarRacaoComponent implements OnInit{
       estoque_minimo: this.racao?.estoque_minimo,
       batida: this.racao?.batida,
     });
-    // console.log('Campos => \n', this.formGroup.value)
-    // const value2 = this.formGroup.get('fase_utilizada')?.value;
-    // console.log('VALUE2 => ', value2)
   }
 
   sendToBack() {
