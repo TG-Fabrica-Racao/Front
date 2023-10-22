@@ -87,4 +87,12 @@ export class RacaoService {
   }
 
 
+  getRacoesMaisCompradas(): Observable<{racao: string, quantidade: number}[]> {
+    return this.http.get<{racao: string, quantidade: number}[]>(`${this.API}/racoes/mais-compradas`);
+  }
+
+  getRacoesMaisProduzidas(): Observable<{racao: string, quantidade: number}[]> {
+    return this.http.get<{racao: string, quantidade: number}[]>(`${this.API}/racoes/mais-produzidas`);
+  }
+
 }
