@@ -14,6 +14,8 @@ import { ProducoesComponent } from './producoes/producoes.component';
 import { MenuModule } from 'src/app/shared/menu/menu.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
+import { EstatisticasComponent } from './estatisticas/estatisticas.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { ToastModule } from 'primeng/toast';
     LogsComponent,
     AcertosEstoqueComponent,
     ProducoesComponent,
+    EstatisticasComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,10 @@ import { ToastModule } from 'primeng/toast';
     MenuModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })
   ]
 })
 export class SistemaModule { }
