@@ -57,4 +57,10 @@ export class IngredienteService {
     }
     return this.http.get<HistoricoCompraIngrediente[]>(`${this.API}/ingredientes/historico-compras`, { params: params });
   }
+
+  getIngredientesMaisComprados(): Observable<{ingrediente: string, quantidade: number}[]> {
+    return  this.http.get<{ingrediente: string, quantidade: number}[]>(`${this.API}/ingredientes/mais-comprados`)
+  }
+    
+
 }
