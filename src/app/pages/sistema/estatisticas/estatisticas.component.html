@@ -1,0 +1,17 @@
+<div class="search-bar">
+    <div class="dropdown">
+        <button (click)="toggleDropdown()">{{ selectedFilter | titlecase }} <i
+                [ngClass]="isDropdownOpen  ? 'bx bx-chevron-down' : 'bx bx-chevron-up'" class=""></i></button>
+        <ul *ngIf="isDropdownOpen">
+            <li (click)="selectFilter('Rações mais produzidas')" [ngClass]="selectedFilter == 'Rações mais produzidas' ? 'selectedFilter' : ''">Rações mais produzidas</li>
+            <li (click)="selectFilter('Rações mais compradas')" [ngClass]="selectedFilter == 'Rações mais compradas' ? 'selectedFilter' : ''">Rações mais compradas</li>
+            <li (click)="selectFilter('Ingredientes mais comprados')" [ngClass]="selectedFilter == 'Ingredientes mais comprados' ? 'selectedFilter' : ''">Ingredientes mais comprados</li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="container">
+    <h1>{{ this.selectedFilter }}</h1>
+    <div echarts #chart #echartsChart [options]="options" class="demo-chart"></div>
+</div>
