@@ -12,6 +12,7 @@ import { LogsComponent } from './logs/logs.component';
 import { CanDeactivateGuard } from 'src/app/shared/guards/can-deactivate-guard.service';
 import { UsuarioResolverService } from 'src/app/shared/resolvers/usuario-resolver.service';
 import { RoleGuard } from 'src/app/shared/guards/role.guard';
+import { EstatisticasComponent } from './estatisticas/estatisticas.component';
 
 const routes: Routes = [
   { 
@@ -70,6 +71,12 @@ const routes: Routes = [
         pathMatch: 'prefix',
         canActivate: [RoleGuard],
         component: LogsComponent
+      },
+      {
+        path: 'estatisticas',
+        pathMatch: 'prefix',
+        canActivate: [RoleGuard],
+        component: EstatisticasComponent
       },
     ]
   }
