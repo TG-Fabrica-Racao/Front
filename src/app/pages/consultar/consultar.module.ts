@@ -11,6 +11,7 @@ import { MenuModule } from 'src/app/shared/menu/menu.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    ConfirmDialogModule
   ]
 })
 export class ConsultarModule { }
