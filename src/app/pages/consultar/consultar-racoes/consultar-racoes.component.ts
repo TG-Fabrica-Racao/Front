@@ -110,6 +110,9 @@ export class ConsultarRacoesComponent implements OnInit {
 
   editRacao(id: number) {
     return this.router.navigate(['../racao', id, 'editar'], { relativeTo: this.route });
-    
+  }
+
+  viewIngredientes(id: number) {
+    return this.router.navigate(['../racao', id, 'ingredientes'], { relativeTo: this.route });
   }
 }

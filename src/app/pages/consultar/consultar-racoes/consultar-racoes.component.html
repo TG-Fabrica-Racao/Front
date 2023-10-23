@@ -51,7 +51,7 @@
                     <p-overlayPanel #op>
                         <ng-template pTemplate="content">
                             <div class="items">
-                                <a><i class="pi pi-eye" style="font-size: 1rem"></i> Visualizar Ingredientes</a>
+                                <a (click)="viewIngredientes(+item.id)"><i class="pi pi-eye" style="font-size: 1rem"></i> Visualizar Ingredientes</a>
                                 <a (click)="editRacao(+item.id)"><i class="pi pi-pencil" style="font-size: 1rem"></i> Editar Ração</a>
                                 
                                 
