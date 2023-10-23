@@ -74,3 +74,9 @@ export interface UpdateRacao {
     fases_utilizadas: number;
     estoque_minimo: number;
 }
+
+export interface RacaoInsertIngrediente {
+    id_racao: number | string;
+    id_ingrediente: number | string;
+    quantidade: number | string;
+}
