@@ -70,7 +70,29 @@ export class EditarRacaoComponent implements OnInit {
   }
 
   editRacao() {
+    if (this.formGroup.valid && this.formGroup.value) {
+      const faseSelecionada = this.fases.find(fase => fase.nome === this.formGroup.value.fase_utilizada);
 
+      if (faseSelecionada) {
+        const values = { ...this.formGroup.value, fase_utilizada: faseSelecionada.id };
+        
+        this.racaoService.updateRacao(this.racao?.id!, values).subscribe({
+          next: (items) => {
+            console.info('Items: ', items);
+            this.messageService.add({ severity: 'success', summary: 'Ração Atualizado', detail: 'Ração atualizado com sucesso!' });
+            
+            setTimeout(() => {
+              this.router.navigate(['/consultar/racoes']);
+            }, 2000)
+          },
+          error: erro => {
+            console.error('Erro: ', erro)
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: erro.error.message || `Ocorreu um erro ao atualizar a Ração.` });
+          },
+          complete: () => this.saved = true
+        })
+      }
+    }
   }
   getAllCategories() {
     this.supService.getAllCategorias().subscribe({
