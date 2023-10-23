@@ -6,11 +6,13 @@ import { FormControl } from '@angular/forms';
 import { Ingrediente } from 'src/app/shared/models/ingrediente';
 import { IngredienteService } from 'src/app/shared/services/ingrediente.service';
 import { FilterService } from 'src/app/shared/services/filter.service';
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 
 @Component({
   selector: 'app-consultar-ingredientes',
   templateUrl: './consultar-ingredientes.component.html',
-  styleUrls: ['./consultar-ingredientes.component.scss']
+  styleUrls: ['./consultar-ingredientes.component.scss'],
+  providers: [ConfirmationService, MessageService]
 })
 export class ConsultarIngredientesComponent implements OnInit {
   currentPage: number = 1;
@@ -27,10 +29,23 @@ export class ConsultarIngredientesComponent implements OnInit {
     private filterService: FilterService,
     private router: Router,
     private route: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) { }
 
 
   ngOnInit(): void {
+    this.getAllIngredientes();
+    this.searchTerm.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    )
+      .subscribe((value) => {
+        this.filterService.setFilter(this.selectedFilter, value)
+      })
+  }
+
+  getAllIngredientes() {
     this.filterService.getFilter().pipe(
       switchMap(({ type, value }) => this.ingredienteService.getIngredientes(type, value)),
       map((ingredientes) => {
@@ -47,16 +62,8 @@ export class ConsultarIngredientesComponent implements OnInit {
       this.totalPages = Math.ceil(this.ingredientes.length / this.itemsPerPage);
       this.updatePage();
     });
-
-    this.searchTerm.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged()
-    )
-      .subscribe((value) => {
-        this.filterService.setFilter(this.selectedFilter, value)
-      })
   }
-
+  
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -104,5 +111,37 @@ export class ConsultarIngredientesComponent implements OnInit {
 
   editIngrediente(id: number) {
     return this.router.navigate(['../ingrediente',id, 'editar'], { relativeTo: this.route });
+  }
+
+  deleteIngrediente(id: number, name: string) {
+    this.confirmationService.confirm({
+      message: `Deseja deletar o ingrediente ${name}?`,
+      header: 'Confirmar',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.ingredienteService.deleteIngrediente(id).subscribe({
+          next: (res) => {
+            console.log('Ingrediente Deletado => ', res)
+            this.messageService.add({ severity: 'success', summary: 'Sucesso', detail: 'Ingredinte Deletado com sucesso!' });
+            this.getAllIngredientes();
+          },
+          error: (erro) => {
+            console.error('Erro => ', erro)
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: erro.error.message || `Ocorreu um erro ao excluir o Ingrediente.` });
+          }
+        })
+      },
+      reject: (type: any) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Você cancelou a exclusão deste ingrediente.' });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({ severity: 'warn', summary: 'Cancelado', detail: 'Você cancelou a exclusão deste ingrediente.' });
+            break;
+        }
+      }
+    })
+      
   }
 }
