@@ -99,21 +99,48 @@
             }
         }
 
-        .submit {
-            height: 38px;
-            border-radius: 4px;
-            outline: none;
-            border: none;
-            padding: 8px;
-            background-color: var(--Green);
-            color: var(--ColorFive);
-            font-weight: 500;
-            transition: 0.5s all ease-in-out;
+        .submit-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            gap: 1rem;
 
-            &:hover {
-                background-color: var(--GreenHover);
+            button {
+                width: 50%;
+                height: 38px;
+                border-radius: 4px;
+                outline: none;
+                border: none;
+                padding: 8px;
+                font-weight: 500;
+                transition: 0.5s all ease-in-out;
+                color: var(--ColorFive);
+                cursor: pointer;
             }
+
+            .cancel {
+                background-color: var(--Red);
+
+                &:hover {
+                    background-color: var(--RedHover);
+                }
+            }
+
+            .submit {
+                background-color: var(--Green);
+
+                &:hover {
+                    background-color: var(--GreenHover);
+                }
+            } 
         }
+    }
+}
+
+@media all and (max-width: 950px) {
+    .submit-box {
+        width: 50% !important;
     }
 }
 
@@ -148,12 +175,14 @@
         }
 
         .submit-box {
+            margin-top: 1rem;
             width: 100% !important;
             display: flex;
             justify-content: center;
-            
-            .submit {
-                margin-top: 16px;
+            flex-direction: column;
+
+            button {
+                width: 60% !important;
             }
         }
 
