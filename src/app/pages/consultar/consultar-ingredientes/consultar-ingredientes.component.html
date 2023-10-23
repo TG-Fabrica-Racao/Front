@@ -1,4 +1,5 @@
 <div class="search-bar">
+    <p-toast></p-toast>
     <div class="dropdown">
         <button (click)="toggleDropdown()">{{ selectedFilter | titlecase }} <i
                 [ngClass]="isDropdownOpen  ? 'bx bx-chevron-down' : 'bx bx-chevron-up'" class=""></i></button>
@@ -38,7 +39,16 @@
                 <td [attr.data_title]="item.estoque_atual || item.estoque_atual === 0 ? 'Estoque Atual' : null">{{
                     item.estoque_atual }}</td>
                 <td [attr.data_title]="item.nome != ''  ? 'Editar' : null">
-                    <button (click)="editIngrediente(+item.id)"><i [ngClass]="item.nome != ''  ? 'bx bx-dots-vertical-rounded' : ''"></i></button>
+                    <button (click)="op.toggle($event)"><i
+                        [ngClass]="item.nome != ''  ? 'bx bx-dots-vertical-rounded' : ''"></i></button>
+                <p-overlayPanel #op>
+                    <ng-template pTemplate="content">
+                        <div class="items">
+                            <a (click)="deleteIngrediente(+item.id, item.nome)"><i class="pi pi-trash" style="font-size: 1rem"></i> Excluir Ingrediente</a>
+                            <a (click)="editIngrediente(+item.id)"><i class="pi pi-pencil" style="font-size: 1rem"></i> Editar Ingrediente</a>
+                        </div>
+                    </ng-template>
+                </p-overlayPanel> 
                 </td>
             </tr>
         </tbody>
@@ -52,3 +62,12 @@
         [style.color]="currentPage == totalPages ? '#006494' : ''"><i class='bx bx-chevrons-right'
             (click)="nextPage()"></i></button>
 </div>
+
+
+
+<p-confirmDialog #cd [style]="{ width: '350px' }">
+    <ng-template pTemplate="footer">
+        <button pButton type="button" icon="pi pi-times" label="Não" styleClass="p-button-danger" (click)="cd.reject()"></button>
+        <button pButton type="button" icon="pi pi-check" label="Sim" styleClass="p-button-success" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
