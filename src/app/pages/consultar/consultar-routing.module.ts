@@ -8,6 +8,7 @@ import { EditarIngredienteComponent } from './editar-ingrediente/editar-ingredie
 import { EditarRacaoComponent } from './editar-racao/editar-racao.component';
 import { IngredienteResolverService } from 'src/app/shared/resolvers/ingrediente-resolver.service';
 import { RacaoResolverService } from 'src/app/shared/resolvers/racao-resolver.service';
+import { IngredientesRacaoComponent } from './ingredientes-racao/ingredientes-racao.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,14 @@ const routes: Routes = [
         component: EditarRacaoComponent,
         pathMatch: 'full',
         canDeactivate: [CanDeactivateGuard],
+        resolve: {
+          racao: RacaoResolverService
+        }
+      },
+      {
+        path: 'racao/:id/ingredientes',
+        component: IngredientesRacaoComponent,
+        pathMatch: 'full',
         resolve: {
           racao: RacaoResolverService
         }
