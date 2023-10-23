@@ -66,3 +66,11 @@ export interface HistoricoCompraRacao {
     numero_nota: string;
     fornecedor: string;
 }
+
+export interface UpdateRacao {
+    nome: string;
+    id_categoria: number;
+    tipo_racao: string;
+    fases_utilizadas: number;
+    estoque_minimo: number;
+}
