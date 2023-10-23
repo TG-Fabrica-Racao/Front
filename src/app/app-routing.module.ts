@@ -50,9 +50,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sistema/sistema.module')
       .then(m => m.SistemaModule) 
   },
+  { path: 'page-not-found', loadChildren: () => import('./pages/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) },
   {
     path: '**',
-    redirectTo: '/login'
+    redirectTo: '/page-not-found'
   }
 ];
 
