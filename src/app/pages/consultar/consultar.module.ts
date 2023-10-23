@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { IngredientesRacaoComponent } from './ingredientes-racao/ingredientes-racao.component';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -21,6 +24,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     ConsultarRacoesComponent,
     EditarIngredienteComponent,
     EditarRacaoComponent,
+    IngredientesRacaoComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     ReactiveFormsModule,
     ToastModule,
     OverlayPanelModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DialogModule,
+    DropdownModule
   ]
 })
 export class ConsultarModule { }
