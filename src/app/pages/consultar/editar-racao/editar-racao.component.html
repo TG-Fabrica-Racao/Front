@@ -72,7 +72,7 @@
         <div class="line">
             <div class="item">
                 <label htmlFor="estoque_minimo">Estoque Mínimo</label>
-                <input id="estoque_minimo" type="text" formControlName="estoque_minimo"
+                <input id="estoque_minimo" type="number" formControlName="estoque_minimo"
                     placeholder="Digite o estoque mínimo"
                     [ngClass]="{'invalid-field': formGroup.controls['estoque_minimo'].invalid && formGroup.controls['estoque_minimo'].touched}">
                 <div *ngIf="formGroup.controls['estoque_minimo'].invalid && formGroup.controls['estoque_minimo'].touched"
@@ -87,6 +87,9 @@
             </div>
         </div>
 
-        <div class="submit-box"><button class="submit" type="submit" (click)="editRacao()">Criar Ração</button></div>
+        <div class="submit-box">
+            <button class="cancel" (click)="sendToBack()">Cancelar</button>
+            <button class="submit" type="submit" (click)="editRacao()">Editar Ração</button>
+        </div>
     </form>
 </div>
