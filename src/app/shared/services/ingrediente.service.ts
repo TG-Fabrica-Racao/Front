@@ -61,6 +61,11 @@ export class IngredienteService {
   getIngredientesMaisComprados(): Observable<{ingrediente: string, quantidade: number}[]> {
     return  this.http.get<{ingrediente: string, quantidade: number}[]>(`${this.API}/ingredientes/mais-comprados`)
   }
+
+
+  deleteIngrediente(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.API}/ingredientes/delete/${id}`)
+  }
     
 
 }
