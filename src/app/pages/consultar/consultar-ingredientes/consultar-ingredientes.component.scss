@@ -234,6 +234,37 @@ table tbody tr td button:focus {
 }
 
 
+.items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100% !important;
+    
+    a {
+        cursor: pointer;
+        transition: 0.5s all ease-in-out;
+        font-weight: 500;
+
+        &:hover {
+            color: var(--ColorOne);
+            font-weight: 600;
+        }
+
+        i {
+            cursor: pointer;
+            transition: 0.5s all ease-in-out;
+            margin-right: 4px;
+    
+            &:hover {
+                color: var(--ColorOne);
+            }
+        }
+    }
+}
+
+
 @media all and (max-width: 800px) {
 
     table {
