@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { debounceTime } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserLogs } from 'src/app/shared/models/user';
 import { UsuarioService } from 'src/app/shared/services/usuario.service';
@@ -21,8 +20,6 @@ export class LogsComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
-    private router: Router,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {  
     this.formGroup = this.formBuilder.group({
@@ -43,7 +40,6 @@ export class LogsComponent implements OnInit {
   }
 
   getLogs() {
-    console.log('teste')
     this.usuarioService.getUsuarioLogs(this.formGroup.value).subscribe({
       next: (res) => {
         this.logs = res;
