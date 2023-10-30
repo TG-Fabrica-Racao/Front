@@ -74,7 +74,7 @@ export class RacaoService {
     for (const key in values) {
       params = params.append(key, values[key]);
     }
-    return this.http.get<LogAcertos[]>(`${this.API}/racoes/historico-producao`, { params: params });
+    return this.http.get<LogAcertos[]>(`${this.API}/racoes/acertos-estoque`, { params: params });
   }
 
   getHistoricoCompraRacoes(values?: any): Observable<HistoricoCompraRacao[]> {
