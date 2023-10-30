@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
-import { IngredienteService } from 'src/app/shared/services/ingrediente.service';
 import { RacaoService } from 'src/app/shared/services/racao.service';
 import { SupService } from 'src/app/shared/services/sup.service';
 
@@ -21,11 +19,11 @@ export class CadastroRacaoComponent implements OnInit {
   tipos: { id: number, nome: string }[] = [
     {
       id: 0,
-      nome: 'Comprada'
+      nome: 'Produção própria'
     },
     {
       id: 1,
-      nome: 'Produzida'
+      nome: 'Comprada'
     },
     {
       id: 2,
@@ -35,11 +33,8 @@ export class CadastroRacaoComponent implements OnInit {
 
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private formBuilder: FormBuilder,
     private supService: SupService,
-    private ingredienteService: IngredienteService,
     private racaoService: RacaoService,
     private messageService: MessageService
   ) {
