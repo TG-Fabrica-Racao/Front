@@ -18,6 +18,7 @@
                 <th>Ingrediente</th>
                 <th>Data</th>
                 <th>Quantidade Bruta</th>
+                <th>Quantidade Líquida</th>
                 <th>Pré-limpeza</th>
                 <th>Valor Unitário</th>
                 <th>Valor Total</th>
@@ -32,6 +33,7 @@
                 <td [attr.data_title]="item.ingrediente ? 'Ingrediente' : null">{{ item.ingrediente }}</td>
                 <td [attr.data_title]="item.data_compra ? 'Data' : null">{{ item.data_compra | date: 'dd/MM/yyyy' }} </td>
                 <td [attr.data_title]="item.quantidade_bruta ? 'Quantidade Bruta' : null">{{ item.quantidade_bruta }}</td>
+                <td [attr.data_title]="item.quantidade_liquida ? 'Quantidade Líquida' : null">{{ item.quantidade_liquida}}</td>
                 <td [attr.data_title]="item.pre_limpeza ? 'Pré-limpeza' : null">{{ item.pre_limpeza }}</td>
                 <td [attr.data_title]="item.valor_unitario ? 'Valor Unitário' : null">{{ item.valor_unitario }}</td>
                 <td [attr.data_title]="item.valor_total ? 'Valor Total' : null">{{ item.valor_total }}</td>
