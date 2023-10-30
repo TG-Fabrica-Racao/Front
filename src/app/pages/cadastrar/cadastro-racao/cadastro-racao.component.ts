@@ -27,7 +27,7 @@ export class CadastroRacaoComponent implements OnInit {
     },
     {
       id: 2,
-      nome: 'Ambas'
+      nome: 'Ambos'
     },
   ];
 
