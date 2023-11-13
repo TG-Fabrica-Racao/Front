@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   { 
     path: 'comprar',
-    canActivate: [AuthGuard],  
+    canActivate: [AuthGuard, RoleGuard],  
     loadChildren: () => import('./pages/comprar/comprar.module')
       .then(m => m.ComprarModule)
   },
